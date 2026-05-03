@@ -13,16 +13,16 @@
         }
 
         body {
-            background: #1a0f0a;
+            background: #f5f0eb;
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
-            color: #f9e7d9;
+            color: #2c1810;
         }
 
         .invitation-wrapper {
             max-width: 600px;
             margin: 0 auto;
-            background: #2A1A12;
+            background: #faf7f4;
             min-height: 100vh;
             position: relative;
         }
@@ -34,7 +34,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: #2A1A12;
+            background: #faf7f4;
             cursor: pointer;
             position: fixed;
             top: 0;
@@ -54,37 +54,36 @@
         }
         
         .seal-card {
-            background: #2f1e16;
-            border-radius: 50px;
-            padding: 3rem 2rem;
             text-align: center;
-            border: 1px solid #d4af7a;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transform: scale(1);
-            transition: transform 0.2s;
-        }
-        
-        .seal-card:active {
-            transform: scale(0.98);
+            padding: 2rem;
         }
         
         .wax-seal {
-            font-size: 4.5rem;
+            font-size: 5rem;
             margin-bottom: 1rem;
+            animation: gentleFloat 2s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px);}
+            50% { transform: translateY(-8px);}
         }
         
         .invite-text {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            letter-spacing: 3px;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
             margin: 1rem 0;
-            color: #d4af7a;
+            color: #8B4513;
+            font-weight: 400;
         }
         
         .tap-instruction {
-            font-size: 0.75rem;
-            opacity: 0.6;
-            margin-top: 1rem;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            margin-top: 1.5rem;
+            letter-spacing: 1px;
         }
 
         /* Audio Control */
@@ -93,24 +92,29 @@
             bottom: 20px;
             right: 20px;
             z-index: 200;
-            background: #d4af7a;
-            color: #1a0f0a;
-            width: 40px;
-            height: 40px;
+            background: #2c1810;
+            color: #f5f0eb;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 1.2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            font-size: 1rem;
+            opacity: 0.7;
+            transition: 0.2s;
+        }
+        
+        .audio-control:hover {
+            opacity: 1;
         }
 
         /* MAIN CONTENT */
         .main-content {
             display: none;
-            padding-bottom: 2rem;
-            background: #2A1A12;
+            padding: 2rem 1.5rem;
+            background: #faf7f4;
         }
         
         .main-content.visible {
@@ -120,128 +124,130 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 4rem 1.5rem;
-            background: #2A1A12;
-            min-height: 100vh;
+            padding: 3rem 0 2rem;
+            min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         
         .wedding-bell {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 1rem;
+            opacity: 0.7;
         }
         
         .getting-married {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 400;
             margin: 1rem 0;
-            color: #d4af7a;
+            color: #8B4513;
+            letter-spacing: 2px;
         }
         
         .floral-icon {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             letter-spacing: 6px;
-            color: #d4af7a;
+            color: #c9a87b;
             margin: 0.5rem 0;
         }
         
         .couple-name {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 500;
             margin: 1rem 0;
-            color: #e9d6b0;
+            color: #2c1810;
+            letter-spacing: 1px;
         }
         
         .scroll-hint {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             margin-top: 2rem;
-            color: #d4af7a;
-            border-bottom: 1px dashed #d4af7a;
-            display: inline-block;
-            padding-bottom: 4px;
+            color: #c9a87b;
             cursor: pointer;
+            letter-spacing: 1px;
         }
 
-        /* Message Card */
-        .message-card {
-            background: #2f1e16;
-            margin: 1rem;
-            padding: 1.5rem;
-            border-radius: 24px;
-            text-align: center;
-            border: 1px solid #d4af7a20;
-        }
-        
-        .message-card p {
-            font-weight: 300;
-            line-height: 1.6;
-            font-size: 0.95rem;
-            color: #e9d6b0;
-        }
-
-        /* SCRATCH CARD - FIXED */
-        .scratch-container {
-            background: #2f1e16;
-            margin: 1rem;
-            padding: 1.5rem;
-            border-radius: 24px;
-            text-align: center;
-        }
-        
-        .scratch-title {
-            font-size: 1rem;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-            color: #d4af7a;
-        }
-        
-        .scratch-card-wrapper {
-            position: relative;
+        /* Divider Line */
+        .divider {
             display: flex;
             justify-content: center;
-            margin: 1rem 0;
+            align-items: center;
+            gap: 12px;
+            margin: 2rem 0;
         }
         
-        .scratch-canvas {
-            display: block;
-            border-radius: 16px;
-            cursor: pointer;
-            width: 100%;
-            max-width: 300px;
-            height: auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        .divider-line {
+            width: 50px;
+            height: 1px;
+            background: #d4c5b0;
         }
         
-        .revealed-message {
-            margin-top: 1rem;
-            font-size: 1rem;
-            font-weight: 500;
-            color: #d4af7a;
-            min-height: 50px;
+        .divider-icon {
+            font-size: 0.8rem;
+            color: #c9a87b;
+        }
+
+        /* Message Section */
+        .message-text {
+            text-align: center;
+            font-weight: 300;
+            line-height: 1.7;
+            font-size: 0.9rem;
+            color: #4a3528;
+            margin: 1.5rem 0;
+        }
+
+        /* Reveal Card - Minimal */
+        .reveal-card {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem 1rem;
+            border-top: 1px solid #e8dfd4;
+            border-bottom: 1px solid #e8dfd4;
+        }
+        
+        .reveal-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            color: #c9a87b;
+            margin-bottom: 1rem;
+        }
+        
+        .reveal-date {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #8B4513;
+            margin: 0.5rem 0;
+            letter-spacing: 1px;
+        }
+        
+        .reveal-time {
+            font-size: 0.85rem;
+            color: #4a3528;
+            letter-spacing: 1px;
         }
 
         /* Slideshow */
         .slideshow-section {
-            margin: 1rem;
+            margin: 2rem 0;
         }
         
         .slideshow-title {
             text-align: center;
-            font-size: 1.3rem;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 1rem;
-            color: #d4af7a;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            color: #c9a87b;
         }
         
         .slideshow-container {
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
-            background: #2f1e16;
+            border-radius: 4px;
+            background: #f0ebe4;
         }
         
         .slides {
@@ -258,182 +264,199 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            opacity: 0.9;
         }
         
         .prev, .next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.5);
-            color: #d4af7a;
-            padding: 10px 14px;
+            background: rgba(44, 24, 16, 0.6);
+            color: #f5f0eb;
+            padding: 8px 12px;
             cursor: pointer;
             border-radius: 50%;
-            font-size: 1rem;
+            font-size: 0.8rem;
             transition: 0.2s;
         }
         
         .prev:hover, .next:hover {
-            background: #d4af7a;
-            color: #1a0f0a;
+            background: #2c1810;
         }
         
-        .prev { left: 8px; }
-        .next { right: 8px; }
+        .prev { left: 10px; }
+        .next { right: 10px; }
         
         .dots {
             text-align: center;
-            padding: 10px;
+            padding: 12px;
         }
         
         .dot {
-            height: 8px;
-            width: 8px;
-            margin: 0 4px;
-            background-color: #d4af7a50;
-            border-radius: 50%;
+            height: 4px;
+            width: 20px;
+            margin: 0 3px;
+            background-color: #d4c5b0;
             display: inline-block;
             cursor: pointer;
         }
         
         .dot.active {
-            background-color: #d4af7a;
+            background-color: #c9a87b;
         }
 
         /* Countdown */
         .countdown-section {
             text-align: center;
-            margin: 1rem;
-            background: #2f1e16;
-            border-radius: 24px;
-            padding: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid #e8dfd4;
+            border-bottom: 1px solid #e8dfd4;
         }
         
         .countdown-section h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: #d4af7a;
-            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            color: #c9a87b;
+            font-weight: 400;
         }
         
         .timer {
             display: flex;
             justify-content: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
         
         .time-box {
-            background: #1a0f0a;
-            padding: 0.5rem 0.8rem;
-            border-radius: 16px;
-            min-width: 60px;
+            text-align: center;
         }
         
         .time-number {
-            font-size: 1.6rem;
-            font-weight: 700;
-            font-family: monospace;
-            color: #d4af7a;
+            font-size: 1.8rem;
+            font-weight: 400;
+            font-family: 'Playfair Display', serif;
+            color: #2c1810;
         }
         
         .time-label {
             font-size: 0.6rem;
-            text-transform: uppercase;
-            color: #e9d6b0;
-        }
-        
-        .event-date {
-            font-size: 0.8rem;
-            margin-top: 0.8rem;
-            color: #e9d6b0;
+            letter-spacing: 1px;
+            color: #c9a87b;
+            margin-top: 4px;
         }
 
         /* Events */
-        .events-grid {
-            margin: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
+        .events-section {
+            margin: 2rem 0;
         }
         
-        .event-card {
-            background: #2f1e16;
+        .events-title {
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            color: #c9a87b;
+        }
+        
+        .event-item {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 0.9rem 1.2rem;
-            border-radius: 50px;
-            border-left: 4px solid #d4af7a;
+            align-items: baseline;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e8dfd4;
+        }
+        
+        .event-item:last-child {
+            border-bottom: none;
         }
         
         .event-name {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: #e9d6b0;
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: #4a3528;
         }
         
         .event-time {
-            font-family: monospace;
             font-size: 0.85rem;
-            color: #d4af7a;
+            color: #c9a87b;
+            letter-spacing: 0.5px;
         }
 
         /* Venue */
-        .venue-card {
-            background: #2f1e16;
-            margin: 1rem;
-            padding: 1.5rem;
-            border-radius: 24px;
+        .venue-section {
             text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid #e8dfd4;
+            border-bottom: 1px solid #e8dfd4;
         }
         
-        .venue-card h3 {
-            margin-bottom: 0.8rem;
-            color: #d4af7a;
-            font-size: 1.2rem;
-        }
-        
-        .address {
-            margin: 0.8rem 0;
-            font-weight: 300;
-            line-height: 1.6;
-            font-size: 0.9rem;
-            color: #e9d6b0;
+        .venue-title {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            color: #c9a87b;
         }
         
         .venue-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #d4af7a;
-            margin-bottom: 0.3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #2c1810;
+            margin-bottom: 0.5rem;
+        }
+        
+        .address {
+            font-weight: 300;
+            line-height: 1.6;
+            font-size: 0.85rem;
+            color: #4a3528;
+            margin: 0.8rem 0;
         }
         
         .directions-btn {
             display: inline-block;
-            background: #d4af7a;
-            color: #1a0f0a;
-            padding: 0.6rem 1.5rem;
-            border-radius: 40px;
+            color: #c9a87b;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.85rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #c9a87b;
+            padding-bottom: 2px;
             margin-top: 0.5rem;
         }
 
+        /* Closing */
+        .closing-text {
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+        
+        .closing-message {
+            font-size: 0.85rem;
+            color: #4a3528;
+            margin-bottom: 1rem;
+        }
+        
+        .couple-signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #8B4513;
+        }
+        
         footer {
             text-align: center;
-            padding: 1.5rem;
-            font-size: 0.7rem;
-            color: #e9d6b0;
+            padding: 2rem 0 1rem;
+            font-size: 0.6rem;
+            color: #d4c5b0;
+            letter-spacing: 1px;
         }
         
         @media (max-width: 480px) {
-            .couple-name { font-size: 1.8rem; }
-            .getting-married { font-size: 2rem; }
-            .time-number { font-size: 1.3rem; }
-            .time-box { min-width: 55px; padding: 0.4rem 0.6rem; }
-            .event-card { padding: 0.8rem 1rem; }
+            .main-content { padding: 1.5rem; }
+            .couple-name { font-size: 1.6rem; }
+            .getting-married { font-size: 1.6rem; }
+            .time-number { font-size: 1.5rem; }
+            .timer { gap: 1rem; }
         }
     </style>
 </head>
@@ -451,37 +474,51 @@
         <div class="seal-card">
             <div class="wax-seal">💌</div>
             <div class="invite-text">You're Invited</div>
-            <div style="font-size: 1.5rem; margin: 0.3rem;">♥ ✿ ♥</div>
-            <div class="tap-instruction">✨ tap the seal to open ✨</div>
+            <div style="font-size: 1rem; margin: 0.3rem;">♥ ✦ ♥</div>
+            <div class="tap-instruction">tap the seal to open</div>
         </div>
     </div>
 
     <!-- MAIN CONTENT -->
     <div class="main-content" id="mainContent">
+        <!-- Hero Section -->
         <div class="hero">
-            <div class="wedding-bell">🔔</div>
-            <div class="getting-married">We're Getting Married</div>
-            <div class="floral-icon">✿ ✿ ✿</div>
+            <div class="wedding-bell">✦</div>
+            <div class="getting-married">We're getting married</div>
+            <div class="floral-icon">♥ ✦ ♥</div>
             <div class="couple-name">Laxmi & Abhilash Reddy</div>
-            <div class="scroll-hint" id="scrollHint">Scroll ⌄</div>
+            <div class="scroll-hint" id="scrollHint">scroll ⌄</div>
         </div>
 
-        <div class="message-card" id="messageCard">
-            <p>With hearts full of love and joy, we warmly invite you to share in the celebration of our union. Your presence would mean the world to us as we begin this beautiful journey together.</p>
+        <!-- Divider -->
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">♥</span>
+            <span class="divider-line"></span>
         </div>
 
-        <!-- SCRATCH CARD - FIXED -->
-        <div class="scratch-container">
-            <div class="scratch-title">✧ Scratch to Reveal ✧</div>
-            <div class="scratch-card-wrapper">
-                <canvas id="scratchCanvas" class="scratch-canvas" width="300" height="120"></canvas>
-            </div>
-            <div class="revealed-message" id="revealMsg"></div>
+        <!-- Message -->
+        <div class="message-text">
+            With hearts full of love and joy, we warmly invite you to share in the celebration of our union. Your presence would mean the world to us as we begin this beautiful journey together.
+        </div>
+
+        <!-- Divider -->
+        <div class="divider">
+            <span class="divider-line"></span>
+            <span class="divider-icon">✦</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <!-- Reveal Card - Minimal (Replaces Scratch Card) -->
+        <div class="reveal-card">
+            <div class="reveal-label">✦ SAVE THE DATE ✦</div>
+            <div class="reveal-date">May 8, 2026</div>
+            <div class="reveal-time">Thursday at 10:38 AM</div>
         </div>
 
         <!-- Slideshow -->
         <div class="slideshow-section">
-            <div class="slideshow-title">♥ Our Gallery ♥</div>
+            <div class="slideshow-title">✦ OUR GALLERY ✦</div>
             <div class="slideshow-container">
                 <div class="slides" id="slides"></div>
                 <a class="prev" id="prevSlide">❮</a>
@@ -490,51 +527,67 @@
             <div class="dots" id="dots"></div>
         </div>
 
-        <!-- Save The Date -->
-        <div class="message-card">
-            <p style="font-size:1.1rem; font-weight:500; color:#d4af7a;">Save The Date</p>
-            <p style="font-size:1rem; margin-top:0.3rem;">May 8, 2026 • Thursday<br>10:38 AM</p>
-        </div>
-
         <!-- Countdown -->
         <div class="countdown-section">
-            <h3>♥ Counting Down To Our Big Day ♥</h3>
+            <h3>✦ COUNTING DOWN ✦</h3>
             <div class="timer">
-                <div class="time-box"><span class="time-number" id="days">00</span><div class="time-label">Days</div></div>
-                <div class="time-box"><span class="time-number" id="hours">00</span><div class="time-label">Hours</div></div>
-                <div class="time-box"><span class="time-number" id="minutes">00</span><div class="time-label">Minutes</div></div>
-                <div class="time-box"><span class="time-number" id="seconds">00</span><div class="time-label">Seconds</div></div>
+                <div class="time-box">
+                    <div class="time-number" id="days">00</div>
+                    <div class="time-label">DAYS</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-number" id="hours">00</div>
+                    <div class="time-label">HOURS</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-number" id="minutes">00</div>
+                    <div class="time-label">MINUTES</div>
+                </div>
+                <div class="time-box">
+                    <div class="time-number" id="seconds">00</div>
+                    <div class="time-label">SECONDS</div>
+                </div>
             </div>
-            <div class="event-date">May 8, 2026 • 10:38 AM</div>
         </div>
 
         <!-- Events -->
-        <div class="events-grid">
-            <div class="event-card"><span class="event-name">♥ Haldi</span><span class="event-time">May 6, 2026 • 6:00 PM</span></div>
-            <div class="event-card"><span class="event-name">♥ Pradhanam</span><span class="event-time">May 7, 2026 • 6:00 PM</span></div>
-            <div class="event-card"><span class="event-name">♥ Muhurtam</span><span class="event-time">May 8, 2026 • 10:38 AM</span></div>
+        <div class="events-section">
+            <div class="events-title">✦ WEDDING EVENTS ✦</div>
+            <div class="event-item">
+                <span class="event-name">Haldi</span>
+                <span class="event-time">May 6, 2026 • 6:00 PM</span>
+            </div>
+            <div class="event-item">
+                <span class="event-name">Pradhanam</span>
+                <span class="event-time">May 7, 2026 • 6:00 PM</span>
+            </div>
+            <div class="event-item">
+                <span class="event-name">Muhurtam</span>
+                <span class="event-time">May 8, 2026 • 10:38 AM</span>
+            </div>
         </div>
 
         <!-- Venue -->
-        <div class="venue-card">
-            <h3>Venue ♥</h3>
+        <div class="venue-section">
+            <div class="venue-title">✦ VENUE ✦</div>
+            <div class="venue-name">HR Function Hall</div>
             <div class="address">
-                <div class="venue-name">🏛️ HR Function Hall</div>
-                Karasgutti Road, Jujalpur,<br>
+                Karasgutti Road, Jujalpur<br>
                 Narayankhed, District: Sangareddy<br>
                 Telangana - 502286
             </div>
-            <a href="https://maps.google.com/?q=HR+Function+Hall+Karasgutti+Road+Jujalpur+Narayankhed+Sangareddy" target="_blank" class="directions-btn">📍 Get Directions</a>
+            <a href="https://maps.google.com/?q=HR+Function+Hall+Karasgutti+Road+Jujalpur+Narayankhed+Sangareddy" target="_blank" class="directions-btn">VIEW MAP →</a>
         </div>
 
-        <div class="message-card">
-            <p>We can't wait to celebrate with you!</p>
-            <p style="font-family:'Playfair Display'; font-size:1.2rem; margin-top:6px; color:#d4af7a;">Laxmi & Abhilash Reddy</p>
-            <div style="margin-top: 4px;">♥</div>
+        <!-- Closing -->
+        <div class="closing-text">
+            <div class="closing-message">We can't wait to celebrate with you!</div>
+            <div class="couple-signature">Laxmi & Abhilash Reddy</div>
+            <div style="margin: 0.8rem 0;">♥</div>
         </div>
         
         <footer>
-            ❤️ With love from both families ❤️
+            With love from both families
         </footer>
     </div>
 </div>
@@ -579,18 +632,17 @@
 
         // Scroll
         const scrollHint = document.getElementById('scrollHint');
-        const messageCard = document.getElementById('messageCard');
         scrollHint.addEventListener('click', () => {
-            messageCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            window.scrollTo({ behavior: 'smooth', top: window.innerHeight });
         });
 
         function createConfetti() {
-            const colors = ['#d4af7a', '#e6c394', '#c9a87b'];
-            for(let i = 0; i < 50; i++) {
+            const colors = ['#c9a87b', '#d4c5b0', '#e8dfd4', '#8B4513'];
+            for(let i = 0; i < 40; i++) {
                 const confetti = document.createElement('div');
                 confetti.style.position = 'fixed';
-                confetti.style.width = '8px';
-                confetti.style.height = '8px';
+                confetti.style.width = '6px';
+                confetti.style.height = '6px';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.left = Math.random() * window.innerWidth + 'px';
                 confetti.style.top = '-10px';
@@ -672,179 +724,6 @@
         }
         updateCountdown();
         setInterval(updateCountdown, 1000);
-
-        // SCRATCH CARD - FULLY WORKING
-        const canvas = document.getElementById('scratchCanvas');
-        const ctx = canvas.getContext('2d');
-        const revealDiv = document.getElementById('revealMsg');
-        
-        canvas.width = 300;
-        canvas.height = 120;
-        
-        // Hidden content (what gets revealed)
-        function drawHiddenContent() {
-            const hiddenCanvas = document.createElement('canvas');
-            hiddenCanvas.width = 300;
-            hiddenCanvas.height = 120;
-            const hCtx = hiddenCanvas.getContext('2d');
-            
-            hCtx.fillStyle = '#d4af7a';
-            hCtx.fillRect(0, 0, 300, 120);
-            hCtx.fillStyle = '#8B4513';
-            hCtx.font = 'bold 22px "Playfair Display", serif';
-            hCtx.fillText('♥', 15, 50);
-            hCtx.fillStyle = '#4a1a0e';
-            hCtx.font = 'bold 16px "Poppins"';
-            hCtx.fillText('May 8, 2026', 55, 45);
-            hCtx.font = '14px "Poppins"';
-            hCtx.fillStyle = '#5a2a1a';
-            hCtx.fillText('10:38 AM', 55, 70);
-            hCtx.font = 'italic 11px "Poppins"';
-            hCtx.fillStyle = '#3a1a0a';
-            hCtx.fillText('Laxmi & Abhilash', 55, 95);
-            return hiddenCanvas;
-        }
-        
-        const hiddenContent = drawHiddenContent();
-        
-        // Scratch cover layer
-        function drawCover() {
-            ctx.fillStyle = '#8B7355';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            // Add texture
-            for(let i = 0; i < 200; i++) {
-                ctx.fillStyle = `rgba(160, 136, 104, ${Math.random() * 0.5})`;
-                ctx.beginPath();
-                ctx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 2 + 1, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            ctx.fillStyle = '#e6d5b3';
-            ctx.font = 'bold 14px "Poppins"';
-            ctx.fillText('✋ SCRATCH →', canvas.width/2 - 45, canvas.height/2);
-            ctx.font = '10px monospace';
-            ctx.fillStyle = '#c9b896';
-            ctx.fillText('swipe to reveal', canvas.width/2 - 38, canvas.height - 18);
-            ctx.strokeStyle = '#d4af7a';
-            ctx.lineWidth = 1.5;
-            ctx.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
-        }
-        
-        // Mask canvas for tracking scratched areas
-        const maskCanvas = document.createElement('canvas');
-        maskCanvas.width = canvas.width;
-        maskCanvas.height = canvas.height;
-        const maskCtx = maskCanvas.getContext('2d');
-        maskCtx.fillStyle = 'black';
-        maskCtx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        let isScratching = false;
-        let scratchedAmount = 0;
-        let fullyRevealed = false;
-        
-        function redrawCanvas() {
-            // Draw hidden content
-            ctx.drawImage(hiddenContent, 0, 0);
-            // Draw cover
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCtx.fillStyle = '#8B7355';
-            tempCtx.fillRect(0, 0, canvas.width, canvas.height);
-            for(let i = 0; i < 200; i++) {
-                tempCtx.fillStyle = `rgba(160, 136, 104, ${Math.random() * 0.5})`;
-                tempCtx.beginPath();
-                tempCtx.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 2 + 1, 0, Math.PI * 2);
-                tempCtx.fill();
-            }
-            tempCtx.fillStyle = '#e6d5b3';
-            tempCtx.font = 'bold 14px "Poppins"';
-            tempCtx.fillText('✋ SCRATCH →', canvas.width/2 - 45, canvas.height/2);
-            tempCtx.font = '10px monospace';
-            tempCtx.fillStyle = '#c9b896';
-            tempCtx.fillText('swipe to reveal', canvas.width/2 - 38, canvas.height - 18);
-            tempCtx.strokeStyle = '#d4af7a';
-            tempCtx.lineWidth = 1.5;
-            tempCtx.strokeRect(3, 3, canvas.width - 6, canvas.height - 6);
-            
-            ctx.drawImage(tempCanvas, 0, 0);
-            // Apply mask - where mask is white, make cover transparent
-            ctx.save();
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.drawImage(maskCanvas, 0, 0);
-            ctx.restore();
-        }
-        
-        function scratch(x, y, radius = 12) {
-            if (fullyRevealed) return;
-            maskCtx.fillStyle = 'white';
-            maskCtx.beginPath();
-            maskCtx.arc(x, y, radius, 0, Math.PI * 2);
-            maskCtx.fill();
-            
-            // Count scratched pixels
-            const imgData = maskCtx.getImageData(0, 0, canvas.width, canvas.height);
-            let whiteCount = 0;
-            for (let i = 3; i < imgData.data.length; i += 4) {
-                if (imgData.data[i] > 200) whiteCount++;
-            }
-            const percentage = (whiteCount / (canvas.width * canvas.height)) * 100;
-            
-            redrawCanvas();
-            
-            if (percentage > 40 && !fullyRevealed) {
-                fullyRevealed = true;
-                revealDiv.innerHTML = '🎉✨ Our Forever Begins! ✨🎉<br>💑 May 8, 2026 • 10:38 AM 💑';
-                revealDiv.style.animation = 'pop 0.5s ease';
-                createConfetti();
-            }
-        }
-        
-        function getCoords(e) {
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            let clientX, clientY;
-            if (e.touches) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            } else {
-                clientX = e.clientX;
-                clientY = e.clientY;
-            }
-            let x = (clientX - rect.left) * scaleX;
-            let y = (clientY - rect.top) * scaleY;
-            x = Math.min(Math.max(0, x), canvas.width);
-            y = Math.min(Math.max(0, y), canvas.height);
-            return { x, y };
-        }
-        
-        function handleStart(e) {
-            e.preventDefault();
-            isScratching = true;
-            const { x, y } = getCoords(e);
-            scratch(x, y);
-        }
-        
-        function handleMove(e) {
-            if (!isScratching) return;
-            e.preventDefault();
-            const { x, y } = getCoords(e);
-            scratch(x, y);
-        }
-        
-        function handleEnd() {
-            isScratching = false;
-        }
-        
-        canvas.addEventListener('mousedown', handleStart);
-        window.addEventListener('mousemove', handleMove);
-        window.addEventListener('mouseup', handleEnd);
-        canvas.addEventListener('touchstart', handleStart);
-        canvas.addEventListener('touchmove', handleMove);
-        canvas.addEventListener('touchend', handleEnd);
-        
-        drawCover();
     })();
 </script>
 </body>
