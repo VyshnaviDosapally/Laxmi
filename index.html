@@ -174,7 +174,7 @@
             font-size: 1rem;
         }
 
-        /* PHOTO GALLERY SECTION - CLASSIC THEME */
+        /* PHOTO GALLERY SECTION */
         .gallery-section {
             margin: 2rem 1.2rem;
         }
@@ -445,12 +445,21 @@
         .venue-card h3 {
             margin-bottom: 1rem;
             color: #d4af7a;
+            font-size: 1.5rem;
         }
         
         .address {
             margin: 1rem 0;
             font-weight: 300;
-            line-height: 1.6;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .venue-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #d4af7a;
+            margin-bottom: 0.5rem;
         }
         
         .directions-btn {
@@ -483,6 +492,7 @@
             .time-box { min-width: 60px; padding: 0.5rem; }
             .event-card { flex-direction: column; gap: 0.5rem; text-align: center; }
             .gallery-grid { gap: 0.8rem; }
+            .venue-name { font-size: 1rem; }
         }
     </style>
 </head>
@@ -511,11 +521,11 @@
             <p>With hearts full of love and joy, we warmly invite you to share in the celebration of our union. Your presence would mean the world to us as we begin this beautiful journey together.</p>
         </div>
 
-        <!-- PHOTO GALLERY SECTION - CLASSIC THEME -->
+        <!-- PHOTO GALLERY SECTION -->
         <div class="gallery-section">
             <div class="gallery-title">Our Precious Moments</div>
             <div class="gallery-grid" id="galleryGrid">
-                <!-- Photos will be added here via JavaScript -->
+                <!-- Photos will be added via JavaScript -->
             </div>
         </div>
 
@@ -554,15 +564,16 @@
             <div class="event-card"><span class="event-name">♥ Vratham</span><span class="event-time">May 9, 2026 • 9:00 AM</span></div>
         </div>
 
-        <!-- Venue -->
+        <!-- Venue - Updated with HR Function Hall -->
         <div class="venue-card">
             <h3>Venue ♥</h3>
             <div class="address">
-                <strong>Abhilash Reddy Residence</strong><br>
-                Mittagudipadu, Rentachintala Mandal<br>
-                Andhra Pradesh - 522421
+                <div class="venue-name">🏛️ HR Function Hall</div>
+                Karasgutti Road, Jujalpur,<br>
+                Narayankhed, District: Sangareddy<br>
+                Telangana - 502286
             </div>
-            <a href="https://maps.google.com/?q=Mittagudipadu+Rentachintala+Andhra+Pradesh" target="_blank" class="directions-btn">📍 Get Directions →</a>
+            <a href="https://maps.google.com/?q=HR+Function+Hall+Karasgutti+Road+Jujalpur+Narayankhed+Sangareddy" target="_blank" class="directions-btn">📍 Get Directions →</a>
         </div>
 
         <div class="message-card">
@@ -629,7 +640,7 @@
             }
         }
 
-        // ----- PHOTO GALLERY WITH CLASSIC THEME IMAGES -----
+        // ----- PHOTO GALLERY -----
         // Replace these URLs with your own wedding photos
         const galleryImages = [
             { url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=400&fit=crop", caption: "Love Blossoms 🌸" },
@@ -646,7 +657,7 @@
         const lightboxCaption = document.getElementById('lightboxCaption');
         
         function createGallery() {
-            galleryImages.forEach((img, index) => {
+            galleryImages.forEach((img) => {
                 const galleryItem = document.createElement('div');
                 galleryItem.className = 'gallery-item';
                 galleryItem.innerHTML = `
