@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Laxmi & Abhilash Reddy | Wedding Invitation</title>
+    <!-- Google Fonts for elegant typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1a0f0a;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            color: #f9e7d9;
+        }
+
+        /* Custom scroll */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2c1a12;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af7a;
+            border-radius: 10px;
+        }
+
+        /* Main container with subtle pattern */
+        .invitation-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #2A1A12 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23d4af7a10" width="40" height="40"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') repeat;
+            box-shadow: 0 0 40px rgba(0,0,0,0.6);
+            min-height: 100vh;
+        }
+
+        /* SEAL SECTION (tap to open) */
+        .seal-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #3e2a21, #1e110b);
+            cursor: pointer;
+            transition: all 0.5s ease;
+            position: relative;
+            z-index: 20;
+            text-align: center;
+            padding: 2rem;
+        }
+        .seal-section.hidden {
+            display: none;
+        }
+        .seal-card {
+            background: rgba(30, 20, 15, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 60px 60px 40px 40px;
+            padding: 2rem 2rem 2.5rem;
+            border: 1px solid rgba(212, 175, 122, 0.5);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
+            transform: scale(1);
+            transition: transform 0.2s;
+        }
+        .seal-card:active { transform: scale(0.98);}
+        .wax-seal {
+            font-size: 5rem;
+            filter: drop-shadow(2px 4px 12px rgba(0,0,0,0.4));
+            animation: gentleFloat 2s infinite;
+            margin-bottom: 1rem;
+        }
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px);}
+            50% { transform: translateY(-8px);}
+            100% { transform: translateY(0px);}
+        }
+        .invite-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            margin: 1rem 0;
+            color: #e9d6b0;
+        }
+        .tap-instruction {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+        }
+
+        /* MAIN CONTENT (initially hidden) */
+        .main-content {
+            display: none;
+            padding-bottom: 4rem;
+        }
+        .main-content.visible {
+            display: block;
+            animation: fadeInUp 1s ease;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Hero floral */
+        .hero {
+            text-align: center;
+            padding: 3rem 1.5rem 2rem;
+            background: linear-gradient(145deg, #3b261d, #22140e);
+            border-bottom: 1px solid #d4af7a40;
+        }
+        .floral-icon {
+            font-size: 2rem;
+            letter-spacing: 8px;
+            color: #e6c394;
+        }
+        .couple-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.7rem;
+            font-weight: 700;
+            margin: 1rem 0 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 5px #00000030;
+        }
+        .scroll-hint {
+            font-size: 0.8rem;
+            margin-top: 1.8rem;
+            display: inline-block;
+            border-bottom: 1px dashed #d4af7a;
+            padding-bottom: 4px;
+        }
+
+        /* Love message card */
+        .message-card {
+            background: #2f1e16e6;
+            margin: 1.8rem 1.2rem;
+            padding: 1.8rem;
+            border-radius: 36px;
+            backdrop-filter: blur(2px);
+            text-align: center;
+            border: 1px solid #d4af7a30;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .message-card p {
+            font-weight: 300;
+            line-height: 1.5;
+            font-size: 1rem;
+        }
+
+        /* SCRATCH SECTION */
+        .scratch-container {
+            background: #2f1e16;
+            margin: 1.8rem 1.2rem;
+            border-radius: 40px;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        .scratch-title {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            color: #e6c394;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #4e2c1c;
+            border-radius: 28px;
+            cursor: grab;
+            width: 100%;
+            height: auto;
+            background-image: radial-gradient(circle at 10px 10px, #b87c4f 1.5px, transparent 1px);
+            background-size: 20px 20px;
+            box-shadow: 0 6px 14px black;
+        }
+        canvas:active {
+            cursor: grabbing;
+        }
+        .revealed-message {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f7d9a0;
+        }
+
+        /* Countdown */
+        .countdown-section {
+            text-align: center;
+            margin: 2rem 1.2rem;
+            background: #241710cc;
+            border-radius: 60px;
+            padding: 1.8rem 1rem;
+            backdrop-filter: blur(4px);
+        }
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .time-box {
+            background: #00000055;
+            padding: 0.7rem 1rem;
+            border-radius: 24px;
+            min-width: 70px;
+            backdrop-filter: blur(4px);
+            border: 1px solid #e6c39455;
+        }
+        .time-number {
+            font-size: 2rem;
+            font-weight: 700;
+            font-family: monospace;
+            letter-spacing: 2px;
+        }
+        .time-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+        }
+        .event-date {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Events grid */
+        .events-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.8rem 1.2rem;
+        }
+        .event-card {
+            background: #2c1c14;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            border-left: 6px solid #d4af7a;
+            transition: 0.2s;
+        }
+        .event-name {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .event-time {
+            font-family: monospace;
+            font-size: 1rem;
+            color: #f3cf9a;
+        }
+
+        /* Venue */
+        .venue-card {
+            background: linear-gradient(135deg, #322119, #1f130e);
+            margin: 2rem 1.2rem;
+            padding: 1.8rem;
+            border-radius: 48px;
+            text-align: center;
+        }
+        .address {
+            margin: 1rem 0;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+        .directions-btn {
+            display: inline-block;
+            background: #d4af7a;
+            color: #1f130e;
+            padding: 0.7rem 1.8rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: 0.2s;
+        }
+        .directions-btn:hover {
+            background: #e9c48b;
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.8rem;
+            border-top: 1px solid #d4af7a30;
+        }
+        .heart-icon {
+            color: #e6a17a;
+        }
+        @media (max-width: 480px) {
+            .couple-name { font-size: 2rem; }
+            .time-number { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="invitation-wrapper">
+    <!-- SEAL LAYER: tap to open -->
+    <div class="seal-section" id="sealLayer">
+        <div class="seal-card">
+            <div class="wax-seal">💌</div>
+            <div class="invite-text">You're Invited</div>
+            <div style="font-size: 1.8rem;">♥ ✿ ♥</div>
+            <div class="tap-instruction">tap the seal to open ✨</div>
+        </div>
+    </div>
+
+    <!-- MAIN WEDDING CONTENT (hidden until seal tapped) -->
+    <div class="main-content" id="mainContent">
+        <div class="hero">
+            <div class="floral-icon">✿ ✿ ✿</div>
+            <div class="couple-name">Laxmi & Abhilash Reddy</div>
+            <div class="floral-icon" style="margin-top: 8px;">♥ ✿ ♥</div>
+            <div class="scroll-hint">Scroll ⌄</div>
+        </div>
+
+        <div class="message-card">
+            <p>With hearts full of love and joy, we warmly invite you to share in the celebration of our union. Your presence would mean the world to us as we begin this beautiful journey together.</p>
+        </div>
+
+        <!-- Scratch card section -->
+        <div class="scratch-container">
+            <div class="scratch-title">✧ Scratch to Reveal ✧</div>
+            <canvas id="scratchCanvas" width="300" height="120" style="width:100%; max-width:320px; height:auto; aspect-ratio:300/120"></canvas>
+            <div class="revealed-message" id="revealMsg">♥ You're Invited!</div>
+        </div>
+
+        <!-- Date highlight -->
+        <div class="message-card" style="background:#2f1e16dd;">
+            <p style="font-size:1.2rem; font-weight:bold;">May 8, 2026 • Thursday<br>10:38 AM ✨</p>
+            <p style="font-size:0.9rem;">Save The Date</p>
+        </div>
+
+        <!-- Countdown timer -->
+        <div class="countdown-section">
+            <h3>♥ Counting Down To Our Big Day ♥</h3>
+            <div class="timer" id="timerDisplay">
+                <div class="time-box"><span class="time-number" id="days">00</span><div class="time-label">Days</div></div>
+                <div class="time-box"><span class="time-number" id="hours">00</span><div class="time-label">Hours</div></div>
+                <div class="time-box"><span class="time-number" id="minutes">00</span><div class="time-label">Minutes</div></div>
+                <div class="time-box"><span class="time-number" id="seconds">00</span><div class="time-label">Seconds</div></div>
+            </div>
+            <div class="event-date">May 8, 2026 • 10:38 AM</div>
+        </div>
+
+        <!-- Wedding Events -->
+        <div class="events-grid">
+            <div class="event-card"><span class="event-name">♥ Haldi</span><span class="event-time">May 7, 2026 • 5:00 PM</span></div>
+            <div class="event-card"><span class="event-name">♥ Pradhanam</span><span class="event-time">May 8, 2026 • 9:30 AM</span></div>
+            <div class="event-card"><span class="event-name">♥ Muhurtam</span><span class="event-time">May 8, 2026 • 10:38 AM</span></div>
+            <div class="event-card"><span class="event-name">♥ Vratham</span><span class="event-time">May 9, 2026 • 9:00 AM</span></div>
+        </div>
+
+        <!-- Venue -->
+        <div class="venue-card">
+            <h3 style="font-family:'Playfair Display';">Venue ♥</h3>
+            <div class="address">
+                <strong>Abhilash Reddy Residence & Wedding Garden</strong><br>
+                Mittagudipadu, Rentachintala Mandal,<br>
+                Andhra Pradesh – 522421
+            </div>
+            <a href="https://maps.google.com/?q=Mittagudipadu,+Rentachintala,+Andhra+Pradesh" target="_blank" class="directions-btn">Get Directions →</a>
+        </div>
+
+        <div class="message-card" style="text-align:center">
+            <p>We can't wait to celebrate with you!</p>
+            <p style="font-family:'Playfair Display'; font-size:1.3rem; margin-top:8px;">Laxmi & Abhilash Reddy</p>
+            <div>♥</div>
+        </div>
+        <footer>
+            <span class="heart-icon">❤️</span> With love from both families <span class="heart-icon">❤️</span>
+        </footer>
+    </div>
+</div>
+
+<script>
+    (function(){
+        // ---------- SEAL LOGIC ----------
+        const sealDiv = document.getElementById('sealLayer');
+        const mainDiv = document.getElementById('mainContent');
+
+        function openInvitation() {
+            sealDiv.classList.add('hidden');
+            mainDiv.classList.add('visible');
+            // optional: tiny confetti feel 
+            createConfettiMini();
+        }
+
+        sealDiv.addEventListener('click', openInvitation);
+        // also support touch
+        sealDiv.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            openInvitation();
+        });
+
+        // ---------- COUNTDOWN for May 8, 2026 10:38 AM (IST assumed, but we treat as local datetime)
+        function getWeddingDateTime() {
+            // Wedding: May 8, 2026 at 10:38 AM local time (user's browser timezone)
+            // We'll use local time so countdown shows correctly regardless of timezone difference but referencing the user's locale.
+            // The event is fixed in India local time (IST) but for a countdown, it's nice to pin to the exact moment in user's local time?
+            // Most invitations use the fixed UTC offset. Since the couple is in Andhra, we keep target as "May 8 2026 10:38 IST" by constructing with IST offset.
+            // We'll store as UTC timestamp of that specific moment in IST (+5:30)
+            // Simpler: create a date object using explicit IST constructor: new Date(Date.UTC(2026,4,8,5,8,0)) because 10:38 IST = 05:08 UTC.
+            // 10:38 AM IST = 5:08 UTC (since IST = UTC+5:30). Yes: 10:38 - 5:30 = 05:08.
+            const istWeddingUTC = Date.UTC(2026, 4, 8, 5, 8, 0); // Month is 0-index: 4 = May
+            return new Date(istWeddingUTC);
+        }
+
+        function updateCountdown() {
+            const targetDate = getWeddingDateTime();
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (86400000)) / (3600000));
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
+
+            document.getElementById('days').innerText = days < 10 ? '0'+days : days;
+            document.getElementById('hours').innerText = hours < 10 ? '0'+hours : hours;
+            document.getElementById('minutes').innerText = minutes < 10 ? '0'+minutes : minutes;
+            document.getElementById('seconds').innerText = seconds < 10 ? '0'+seconds : seconds;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ---------- SCRATCH CARD IMPLEMENTATION ----------
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+        const revealDiv = document.getElementById('revealMsg');
+        
+        // Set canvas actual dimensions (preserve quality)
+        function resizeCanvas() {
+            const container = canvas.parentElement;
+            const maxWidth = Math.min(320, container.clientWidth - 20);
+            canvas.style.width = `${maxWidth}px`;
+            canvas.style.height = 'auto';
+            // maintain drawing buffer: keep canvas width/height ratio (300x120)
+            canvas.width = 300;
+            canvas.height = 120;
+            // redraw scratch cover after resize
+            drawCover();
+        }
+
+        let isDragging = false;
+        let lastX = 0, lastY = 0;
+
+        // draw grey scratch cover layer with pattern and text "Scratch Me"
+        function drawCover() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // base silver/grey with speckles
+            ctx.fillStyle = '#9c7b5c';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // metallic effect
+            ctx.fillStyle = '#b5916a';
+            for(let i=0;i<180;i++) {
+                ctx.beginPath();
+                ctx.arc(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*2+1, 0, Math.PI*2);
+                ctx.fill();
+            }
+            ctx.font = 'bold 16px "Poppins", cursive';
+            ctx.fillStyle = '#fcf3da';
+            ctx.shadowBlur = 0;
+            ctx.fillText('✋ SCRATCH →', canvas.width/2 - 70, canvas.height/2+5);
+            ctx.font = '12px monospace';
+            ctx.fillStyle = '#efdba1';
+            ctx.fillText('✨ swipe ✨', canvas.width/2-45, canvas.height-18);
+            // optional border
+            ctx.strokeStyle = '#e4c289';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(2,2, canvas.width-4, canvas.height-4);
+        }
+
+        // Reveal hidden content: actually we pre-draw a nice hidden message under scratch.
+        let isScratchedEnough = false;
+        // store base hidden image: we will draw the "You're Invited!" design permanently on a separate layer but scratch removes cover.
+        // Better: Maintain 2 layers? For simplicity: when we scratch we reveal the underlying image gradually.
+        // We draw the background (message) first, then on top we draw scratch cover each time? Actually we want to erase cover gradually.
+        // So we keep an offscreen canvas with the hidden message. Then each scratch draw, we combine.
+        const hiddenCanvas = document.createElement('canvas');
+        hiddenCanvas.width = 300;
+        hiddenCanvas.height = 120;
+        const hiddenCtx = hiddenCanvas.getContext('2d');
+        
+        function drawHiddenMessage() {
+            hiddenCtx.clearRect(0,0,300,120);
+            // gradient background
+            const grad = hiddenCtx.createLinearGradient(0,0,300,0);
+            grad.addColorStop(0,'#fad6a5');
+            grad.addColorStop(1,'#ffc285');
+            hiddenCtx.fillStyle = grad;
+            hiddenCtx.fillRect(0,0,300,120);
+            hiddenCtx.fillStyle = '#a12830';
+            hiddenCtx.font = 'bold 22px "Playfair Display", cursive';
+            hiddenCtx.shadowBlur = 0;
+            hiddenCtx.fillText('♥', 25, 45);
+            hiddenCtx.font = 'bold 20px "Poppins"';
+            hiddenCtx.fillStyle = '#502314';
+            hiddenCtx.fillText('You’re Invited!', 70, 55);
+            hiddenCtx.font = 'italic 14px "
