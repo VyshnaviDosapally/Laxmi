@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>Preethi & Abhilash Reddy | Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -200,7 +200,7 @@
             margin: 1.5rem 0;
         }
 
-        /* CURTAIN REVEAL CARD */
+        /* EYE-CATCHING CURTAIN REVEAL CARD */
         .curtain-card {
             margin: 2rem 0;
             position: relative;
@@ -209,13 +209,15 @@
         
         .curtain-container {
             position: relative;
-            background: #2c1810;
-            border-radius: 12px;
+            background: linear-gradient(135deg, #1a0f0a, #2c1810);
+            border-radius: 20px;
             overflow: hidden;
-            min-height: 180px;
+            min-height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            border: 2px solid #ffd700;
         }
         
         .curtain-left, .curtain-right {
@@ -223,13 +225,31 @@
             top: 0;
             width: 50%;
             height: 100%;
-            background: linear-gradient(135deg, #8B4513, #5a2a1a);
+            background: linear-gradient(135deg, #e8a735, #d4922b, #c97e1a);
             z-index: 10;
             transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+        }
+        
+        .curtain-left::before, .curtain-right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(255,215,0,0.1) 0px,
+                rgba(255,215,0,0.1) 2px,
+                transparent 2px,
+                transparent 8px
+            );
+            pointer-events: none;
         }
         
         .curtain-left {
@@ -251,12 +271,20 @@
         }
         
         .curtain-text {
-            color: #d4c5b0;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            color: #fff;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
             writing-mode: vertical-rl;
             text-orientation: mixed;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; text-shadow: 0 0 5px #ffd700; }
+            50% { opacity: 1; text-shadow: 0 0 20px #ffd700, 0 0 10px #ffaa00; }
         }
         
         .curtain-left .curtain-text {
@@ -267,8 +295,15 @@
             padding: 2rem;
             text-align: center;
             opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.5s ease 0.3s;
+            transform: scale(0.8);
+            transition: all 0.6s ease 0.3s;
+            background: linear-gradient(135deg, #fff8f0, #fef5e8);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         
         .revealed-content.visible {
@@ -277,50 +312,164 @@
         }
         
         .reveal-label {
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            color: #c9a87b;
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+            color: #c97e1a;
             margin-bottom: 0.8rem;
+            font-weight: 600;
         }
         
         .reveal-date {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             color: #8B4513;
             margin: 0.5rem 0;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-weight: 700;
         }
         
         .reveal-time {
-            font-size: 0.85rem;
-            color: #4a3528;
+            font-size: 0.9rem;
+            color: #c97e1a;
             letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        .reveal-heart {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+            color: #e74c3c;
+            animation: heartbeat 1s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
         
         .tap-hint {
             text-align: center;
-            font-size: 0.65rem;
-            color: #c9a87b;
-            margin-top: 0.8rem;
-            letter-spacing: 1px;
+            font-size: 0.7rem;
+            color: #c97e1a;
+            margin-top: 1rem;
+            letter-spacing: 2px;
             cursor: pointer;
+            font-weight: 500;
+            transition: 0.2s;
         }
         
-        /* Sparkle Animation */
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
+        .tap-hint:hover {
+            color: #8B4513;
+        }
+
+        /* HIGHLIGHTED COUNTDOWN SECTION */
+        .countdown-section {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, #fff8f0, #fef0e0);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(201, 126, 26, 0.15);
+            border: 1px solid #ffd700;
+            position: relative;
+            overflow: hidden;
         }
         
-        .sparkle {
+        .countdown-section::before {
+            content: '';
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: #ffd700;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 20;
-            animation: sparkle 0.6s ease-out forwards;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, transparent 70%);
+            animation: rotateGlow 10s linear infinite;
+        }
+        
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .countdown-section h3 {
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+            color: #c97e1a;
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, #e8a735, #c97e1a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .time-box {
+            text-align: center;
+            background: linear-gradient(145deg, #fff, #fef5e8);
+            padding: 1rem 1.2rem;
+            border-radius: 20px;
+            min-width: 80px;
+            box-shadow: 0 8px 20px rgba(201, 126, 26, 0.2);
+            border: 1px solid #ffd700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: calc(var(--i, 0) * 0.2s);
+        }
+        
+        .time-box:nth-child(1) { --i: 0; animation-delay: 0s; }
+        .time-box:nth-child(2) { --i: 1; animation-delay: 0.2s; }
+        .time-box:nth-child(3) { --i: 2; animation-delay: 0.4s; }
+        .time-box:nth-child(4) { --i: 3; animation-delay: 0.6s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .time-box:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(201, 126, 26, 0.3);
+        }
+        
+        .time-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #8B4513, #c97e1a);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 2px;
+        }
+        
+        .time-label {
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+            color: #c97e1a;
+            margin-top: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        
+        .event-date {
+            font-size: 0.85rem;
+            margin-top: 1.2rem;
+            color: #8B4513;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Slideshow */
@@ -396,47 +545,6 @@
         
         .dot.active {
             background-color: #c9a87b;
-        }
-
-        /* Countdown */
-        .countdown-section {
-            text-align: center;
-            margin: 2rem 0;
-            padding: 1.5rem 0;
-            border-top: 1px solid #e8dfd4;
-            border-bottom: 1px solid #e8dfd4;
-        }
-        
-        .countdown-section h3 {
-            font-size: 0.8rem;
-            letter-spacing: 3px;
-            margin-bottom: 1.5rem;
-            color: #c9a87b;
-            font-weight: 400;
-        }
-        
-        .timer {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
-        
-        .time-box {
-            text-align: center;
-        }
-        
-        .time-number {
-            font-size: 1.8rem;
-            font-weight: 400;
-            font-family: 'Playfair Display', serif;
-            color: #2c1810;
-        }
-        
-        .time-label {
-            font-size: 0.6rem;
-            letter-spacing: 1px;
-            color: #c9a87b;
-            margin-top: 4px;
         }
 
         /* Events */
@@ -548,9 +656,11 @@
             .main-content { padding: 1.5rem; }
             .couple-name { font-size: 1.6rem; }
             .getting-married { font-size: 1.6rem; }
-            .time-number { font-size: 1.5rem; }
-            .timer { gap: 1rem; }
-            .curtain-container { min-height: 160px; }
+            .time-number { font-size: 1.6rem; }
+            .timer { gap: 0.8rem; }
+            .time-box { min-width: 65px; padding: 0.7rem 0.8rem; }
+            .curtain-container { min-height: 200px; }
+            .reveal-date { font-size: 1.4rem; }
         }
     </style>
 </head>
@@ -603,7 +713,7 @@
             <span class="divider-line"></span>
         </div>
 
-        <!-- CURTAIN REVEAL CARD -->
+        <!-- EYE-CATCHING CURTAIN REVEAL CARD -->
         <div class="curtain-card">
             <div class="curtain-container" id="curtainContainer">
                 <div class="curtain-left" id="curtainLeft">
@@ -616,9 +726,10 @@
                     <div class="reveal-label">✦ SAVE THE DATE ✦</div>
                     <div class="reveal-date">May 8, 2026</div>
                     <div class="reveal-time">Thursday at 10:38 AM</div>
+                    <div class="reveal-heart">❤️</div>
                 </div>
             </div>
-            <div class="tap-hint" id="curtainTapHint">👆 tap the curtains to open 👆</div>
+            <div class="tap-hint" id="curtainTapHint">✨ 👆 TAP THE CURTAINS TO REVEAL 👆 ✨</div>
         </div>
 
         <!-- Slideshow -->
@@ -632,9 +743,9 @@
             <div class="dots" id="dots"></div>
         </div>
 
-        <!-- Countdown -->
+        <!-- HIGHLIGHTED COUNTDOWN SECTION -->
         <div class="countdown-section">
-            <h3>✦ COUNTING DOWN ✦</h3>
+            <h3>✦ COUNTING DOWN TO OUR BIG DAY ✦</h3>
             <div class="timer">
                 <div class="time-box">
                     <div class="time-number" id="days">00</div>
@@ -653,6 +764,7 @@
                     <div class="time-label">SECONDS</div>
                 </div>
             </div>
+            <div class="event-date">🎊 May 8, 2026 • 10:38 AM 🎊</div>
         </div>
 
         <!-- Events -->
@@ -746,12 +858,12 @@
         });
 
         function createConfetti() {
-            const colors = ['#c9a87b', '#d4c5b0', '#e8dfd4', '#8B4513'];
-            for(let i = 0; i < 40; i++) {
+            const colors = ['#ffd700', '#e8a735', '#c97e1a', '#8B4513', '#ffaa00'];
+            for(let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.style.position = 'fixed';
-                confetti.style.width = '6px';
-                confetti.style.height = '6px';
+                confetti.style.width = '8px';
+                confetti.style.height = '8px';
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                 confetti.style.left = Math.random() * window.innerWidth + 'px';
                 confetti.style.top = '-10px';
@@ -761,8 +873,8 @@
                 document.body.appendChild(confetti);
                 
                 confetti.animate([
-                    { transform: 'translateY(0px)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px)`, opacity: 0 }
+                    { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
                 ], {
                     duration: 1500 + Math.random() * 1000,
                     easing: 'cubic-bezier(0.4, 0, 0.2, 1)'
@@ -770,20 +882,22 @@
             }
         }
 
-        // Create sparkle effect
+        // Create enhanced sparkle effect
         function createSparkle(x, y) {
-            for(let i = 0; i < 12; i++) {
+            for(let i = 0; i < 20; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
-                const angle = (Math.PI * 2 * i) / 12;
-                const distance = 30 + Math.random() * 30;
+                const angle = (Math.PI * 2 * i) / 20;
+                const distance = 40 + Math.random() * 40;
                 const tx = Math.cos(angle) * distance;
                 const ty = Math.sin(angle) * distance;
                 sparkle.style.left = x + 'px';
                 sparkle.style.top = y + 'px';
                 sparkle.style.transform = `translate(${tx}px, ${ty}px)`;
+                sparkle.style.width = (4 + Math.random() * 6) + 'px';
+                sparkle.style.height = sparkle.style.width;
                 document.body.appendChild(sparkle);
-                setTimeout(() => sparkle.remove(), 600);
+                setTimeout(() => sparkle.remove(), 800);
             }
         }
 
@@ -799,35 +913,41 @@
             if (isRevealed) return;
             isRevealed = true;
             
-            // Open curtains
+            // Open curtains with animation
             curtainLeft.classList.add('open');
             curtainRight.classList.add('open');
             
-            // Show revealed content
+            // Show revealed content with fade-in
             setTimeout(() => {
                 revealedContent.classList.add('visible');
             }, 300);
             
-            // Hide tap hint
+            // Hide tap hint with fade
             curtainTapHint.style.opacity = '0';
             curtainTapHint.style.pointerEvents = 'none';
+            curtainTapHint.style.transition = 'opacity 0.3s';
             
             // Get center position for sparkles
             const rect = curtainContainer.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
             
-            // Create sparkle effects
-            for(let i = 0; i < 3; i++) {
+            // Create multiple sparkle bursts
+            for(let i = 0; i < 4; i++) {
                 setTimeout(() => {
                     createSparkle(centerX, centerY);
                 }, i * 150);
             }
             
-            // Additional confetti for celebration
+            // Additional confetti celebration
             setTimeout(() => {
                 createConfetti();
-            }, 500);
+            }, 400);
+            
+            // Add a subtle sound-like effect with body vibration (if supported)
+            if (navigator.vibrate) {
+                navigator.vibrate(200);
+            }
         }
 
         curtainContainer.addEventListener('click', openCurtains);
