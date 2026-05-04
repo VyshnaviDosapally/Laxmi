@@ -200,20 +200,87 @@
             margin: 1.5rem 0;
         }
 
-        /* Reveal Card - Minimal */
-        .reveal-card {
-            text-align: center;
+        /* CURTAIN REVEAL CARD */
+        .curtain-card {
             margin: 2rem 0;
-            padding: 2rem 1rem;
-            border-top: 1px solid #e8dfd4;
-            border-bottom: 1px solid #e8dfd4;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .curtain-container {
+            position: relative;
+            background: #2c1810;
+            border-radius: 12px;
+            overflow: hidden;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .curtain-left, .curtain-right {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, #8B4513, #5a2a1a);
+            z-index: 10;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .curtain-left {
+            left: 0;
+            transform-origin: left;
+        }
+        
+        .curtain-right {
+            right: 0;
+            transform-origin: right;
+        }
+        
+        .curtain-left.open {
+            transform: translateX(-100%);
+        }
+        
+        .curtain-right.open {
+            transform: translateX(100%);
+        }
+        
+        .curtain-text {
+            color: #d4c5b0;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+        
+        .curtain-left .curtain-text {
+            transform: rotate(180deg);
+        }
+        
+        .revealed-content {
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s ease 0.3s;
+        }
+        
+        .revealed-content.visible {
+            opacity: 1;
+            transform: scale(1);
         }
         
         .reveal-label {
             font-size: 0.7rem;
             letter-spacing: 3px;
             color: #c9a87b;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
         
         .reveal-date {
@@ -228,6 +295,32 @@
             font-size: 0.85rem;
             color: #4a3528;
             letter-spacing: 1px;
+        }
+        
+        .tap-hint {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #c9a87b;
+            margin-top: 0.8rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        
+        /* Sparkle Animation */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 20;
+            animation: sparkle 0.6s ease-out forwards;
         }
 
         /* Slideshow */
@@ -457,6 +550,7 @@
             .getting-married { font-size: 1.6rem; }
             .time-number { font-size: 1.5rem; }
             .timer { gap: 1rem; }
+            .curtain-container { min-height: 160px; }
         }
     </style>
 </head>
@@ -509,11 +603,22 @@
             <span class="divider-line"></span>
         </div>
 
-        <!-- Reveal Card - Minimal -->
-        <div class="reveal-card">
-            <div class="reveal-label">✦ SAVE THE DATE ✦</div>
-            <div class="reveal-date">May 8, 2026</div>
-            <div class="reveal-time">Thursday at 10:38 AM</div>
+        <!-- CURTAIN REVEAL CARD -->
+        <div class="curtain-card">
+            <div class="curtain-container" id="curtainContainer">
+                <div class="curtain-left" id="curtainLeft">
+                    <div class="curtain-text">✦ TAP TO REVEAL ✦</div>
+                </div>
+                <div class="curtain-right" id="curtainRight">
+                    <div class="curtain-text">✦ TAP TO REVEAL ✦</div>
+                </div>
+                <div class="revealed-content" id="revealedContent">
+                    <div class="reveal-label">✦ SAVE THE DATE ✦</div>
+                    <div class="reveal-date">May 8, 2026</div>
+                    <div class="reveal-time">Thursday at 10:38 AM</div>
+                </div>
+            </div>
+            <div class="tap-hint" id="curtainTapHint">👆 tap the curtains to open 👆</div>
         </div>
 
         <!-- Slideshow -->
@@ -553,6 +658,10 @@
         <!-- Events -->
         <div class="events-section">
             <div class="events-title">✦ WEDDING EVENTS ✦</div>
+            <div class="event-item">
+                <span class="event-name">Mehendi</span>
+                <span class="event-time">May 5, 2026 • 7:00 PM</span>
+            </div>
             <div class="event-item">
                 <span class="event-name">Haldi</span>
                 <span class="event-time">May 6, 2026 • 6:00 PM</span>
@@ -660,6 +769,69 @@
                 }).onfinish = () => confetti.remove();
             }
         }
+
+        // Create sparkle effect
+        function createSparkle(x, y) {
+            for(let i = 0; i < 12; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                const angle = (Math.PI * 2 * i) / 12;
+                const distance = 30 + Math.random() * 30;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                sparkle.style.left = x + 'px';
+                sparkle.style.top = y + 'px';
+                sparkle.style.transform = `translate(${tx}px, ${ty}px)`;
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 600);
+            }
+        }
+
+        // Curtain Reveal Effect
+        const curtainLeft = document.getElementById('curtainLeft');
+        const curtainRight = document.getElementById('curtainRight');
+        const revealedContent = document.getElementById('revealedContent');
+        const curtainContainer = document.getElementById('curtainContainer');
+        const curtainTapHint = document.getElementById('curtainTapHint');
+        let isRevealed = false;
+
+        function openCurtains() {
+            if (isRevealed) return;
+            isRevealed = true;
+            
+            // Open curtains
+            curtainLeft.classList.add('open');
+            curtainRight.classList.add('open');
+            
+            // Show revealed content
+            setTimeout(() => {
+                revealedContent.classList.add('visible');
+            }, 300);
+            
+            // Hide tap hint
+            curtainTapHint.style.opacity = '0';
+            curtainTapHint.style.pointerEvents = 'none';
+            
+            // Get center position for sparkles
+            const rect = curtainContainer.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            // Create sparkle effects
+            for(let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    createSparkle(centerX, centerY);
+                }, i * 150);
+            }
+            
+            // Additional confetti for celebration
+            setTimeout(() => {
+                createConfetti();
+            }, 500);
+        }
+
+        curtainContainer.addEventListener('click', openCurtains);
+        curtainTapHint.addEventListener('click', openCurtains);
 
         // Slideshow
         const slideImages = [
