@@ -143,7 +143,7 @@
     <div class="invitation-wrapper">
         <div class="audio-control" id="audioControl">🔊</div>
         
-        <!-- YOUR TELUGU SONG FROM GITHUB - WORKING M4A URL -->
+        <!-- YOUR TELUGU SONG - WILL PLAY AUTOMATICALLY WHEN SEAL IS OPENED -->
         <audio id="bgMusic" loop preload="auto">
             <source src="https://raw.githubusercontent.com/VyshnaviDosapally/Laxmi/main/seettha%20ramula%20kalyanam.m4a" type="audio/mp4">
         </audio>
@@ -310,18 +310,19 @@
                 }, duration);
             }
 
-            // YOUR WORKING TELUGU SONG FROM GITHUB
+            // SONG WILL PLAY AUTOMATICALLY WHEN SEAL IS OPENED
             const bgMusic = document.getElementById('bgMusic');
             const audioControl = document.getElementById('audioControl');
             let isMusicPlaying = false;
             
+            // Music control button (optional - user can also mute/unmute)
             audioControl.addEventListener('click', () => {
                 if (isMusicPlaying) {
                     bgMusic.pause();
                     audioControl.innerHTML = '🔇';
                     isMusicPlaying = false;
                 } else {
-                    bgMusic.play().catch(e => console.log('Audio needs user interaction'));
+                    bgMusic.play().catch(e => console.log('Audio play failed'));
                     audioControl.innerHTML = '🔊';
                     isMusicPlaying = true;
                 }
@@ -334,9 +335,30 @@
                 sealLayer.classList.add('hidden');
                 mainContent.classList.add('visible');
                 startConfetti(3200);
-                bgMusic.play().catch(e => console.log('Audio needs user interaction'));
-                isMusicPlaying = true;
-                audioControl.innerHTML = '🔊';
+                
+                // PLAY SONG AUTOMATICALLY WHEN SEAL IS OPENED
+                bgMusic.play().then(() => {
+                    isMusicPlaying = true;
+                    audioControl.innerHTML = '🔊';
+                }).catch(e => {
+                    console.log('Auto-play prevented by browser. User needs to tap music icon.');
+                    // Show a small hint that user can tap the music icon
+                    const hint = document.createElement('div');
+                    hint.textContent = '🎵 Tap the music icon to play the wedding song 🎵';
+                    hint.style.position = 'fixed';
+                    hint.style.bottom = '80px';
+                    hint.style.left = '50%';
+                    hint.style.transform = 'translateX(-50%)';
+                    hint.style.background = '#2c1810';
+                    hint.style.color = '#ffd700';
+                    hint.style.padding = '8px 16px';
+                    hint.style.borderRadius = '30px';
+                    hint.style.fontSize = '0.7rem';
+                    hint.style.zIndex = '1000';
+                    hint.style.whiteSpace = 'nowrap';
+                    document.body.appendChild(hint);
+                    setTimeout(() => hint.remove(), 4000);
+                });
             }
 
             sealLayer.addEventListener('click', openInvitation);
