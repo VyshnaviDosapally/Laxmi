@@ -22,10 +22,11 @@
         .invite-text { font-family: 'Playfair Display', serif; font-size: 1.3rem; letter-spacing: 4px; margin: 1rem 0; color: #8B4513; font-weight: 400; }
         .tap-instruction { font-size: 0.7rem; opacity: 0.5; margin-top: 1.5rem; letter-spacing: 1px; }
 
+        /* Audio control button - hidden but functional */
         .audio-control {
             position: fixed; bottom: 20px; right: 20px; z-index: 200; background: #2c1810; color: #f5f0eb;
             width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 1rem; opacity: 0.7; transition: 0.2s;
+            cursor: pointer; font-size: 1rem; opacity: 0.6; transition: 0.2s;
         }
         .audio-control:hover { opacity: 1; }
 
@@ -103,6 +104,7 @@
         .dot { height: 6px; width: 24px; margin: 0 4px; background-color: #d4c5b0; display: inline-block; cursor: pointer; border-radius: 3px; transition: 0.2s; }
         .dot.active { background-color: #c97e1a; width: 32px; }
 
+        /* Events section - Mehendi removed */
         .events-section { margin: 2rem 0; }
         .events-title { text-align: center; font-size: 0.8rem; letter-spacing: 3px; margin-bottom: 1.5rem; color: #c9a87b; }
         .event-item { display: flex; justify-content: space-between; align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid #e8dfd4; }
@@ -141,11 +143,12 @@
 <body>
     <canvas id="confetti-canvas"></canvas>
     <div class="invitation-wrapper">
+        <!-- Hidden audio control button (visible but subtle) -->
         <div class="audio-control" id="audioControl">🔊</div>
         
-        <!-- YOUR TELUGU SONG - WILL PLAY AUTOMATICALLY WHEN SEAL IS OPENED -->
+        <!-- NEW SONG: Thana Pranale Neevani - plays automatically when seal is opened -->
         <audio id="bgMusic" loop preload="auto">
-            <source src="https://raw.githubusercontent.com/VyshnaviDosapally/Laxmi/main/seettha%20ramula%20kalyanam.m4a" type="audio/mp4">
+            <source src="https://raw.githubusercontent.com/VyshnaviDosapally/Laxmi/main/Thana-Pranale-Neevani.mp3" type="audio/mpeg">
         </audio>
 
         <div class="seal-section" id="sealLayer">
@@ -209,9 +212,9 @@
                     <div class="event-date">🎊 May 8, 2026 • 10:38 AM 🎊</div>
                 </div>
 
+                <!-- WEDDING EVENTS - MEHENDI REMOVED -->
                 <div class="events-section">
                     <div class="events-title">✦ WEDDING EVENTS ✦</div>
-                    <div class="event-item"><span class="event-name">Mehendi</span><span class="event-time">May 5, 2026 • 7:00 PM</span></div>
                     <div class="event-item"><span class="event-name">Haldi</span><span class="event-time">May 6, 2026 • 6:00 PM</span></div>
                     <div class="event-item"><span class="event-name">Pradhanam</span><span class="event-time">May 7, 2026 • 6:00 PM</span></div>
                     <div class="event-item"><span class="event-name">Muhurtam</span><span class="event-time">May 8, 2026 • 10:38 AM</span></div>
@@ -310,21 +313,26 @@
                 }, duration);
             }
 
-            // SONG WILL PLAY AUTOMATICALLY WHEN SEAL IS OPENED
+            // NEW SONG: Thana Pranale Neevani (962 KB - very fast!)
             const bgMusic = document.getElementById('bgMusic');
             const audioControl = document.getElementById('audioControl');
             let isMusicPlaying = false;
             
-            // Music control button (optional - user can also mute/unmute)
-            audioControl.addEventListener('click', () => {
+            // Preload the song
+            bgMusic.load();
+            
+            // Optional manual control (visible but users may not need it)
+            audioControl.addEventListener('click', function(e) {
+                e.stopPropagation();
                 if (isMusicPlaying) {
                     bgMusic.pause();
                     audioControl.innerHTML = '🔇';
                     isMusicPlaying = false;
                 } else {
-                    bgMusic.play().catch(e => console.log('Audio play failed'));
-                    audioControl.innerHTML = '🔊';
-                    isMusicPlaying = true;
+                    bgMusic.play().then(() => {
+                        audioControl.innerHTML = '🔊';
+                        isMusicPlaying = true;
+                    }).catch(e => console.log('Play failed:', e));
                 }
             });
 
@@ -336,28 +344,14 @@
                 mainContent.classList.add('visible');
                 startConfetti(3200);
                 
-                // PLAY SONG AUTOMATICALLY WHEN SEAL IS OPENED
+                // PLAY SONG DIRECTLY - NO EXTRA TAP NEEDED
                 bgMusic.play().then(() => {
                     isMusicPlaying = true;
                     audioControl.innerHTML = '🔊';
-                }).catch(e => {
-                    console.log('Auto-play prevented by browser. User needs to tap music icon.');
-                    // Show a small hint that user can tap the music icon
-                    const hint = document.createElement('div');
-                    hint.textContent = '🎵 Tap the music icon to play the wedding song 🎵';
-                    hint.style.position = 'fixed';
-                    hint.style.bottom = '80px';
-                    hint.style.left = '50%';
-                    hint.style.transform = 'translateX(-50%)';
-                    hint.style.background = '#2c1810';
-                    hint.style.color = '#ffd700';
-                    hint.style.padding = '8px 16px';
-                    hint.style.borderRadius = '30px';
-                    hint.style.fontSize = '0.7rem';
-                    hint.style.zIndex = '1000';
-                    hint.style.whiteSpace = 'nowrap';
-                    document.body.appendChild(hint);
-                    setTimeout(() => hint.remove(), 4000);
+                    console.log('Thana Pranale Neevani playing!');
+                }).catch((error) => {
+                    console.log('Auto-play prevented by browser:', error);
+                    // Silent fallback - the music button is still there if needed
                 });
             }
 
